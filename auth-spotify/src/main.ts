@@ -83,8 +83,14 @@ function populateUI(profile: any) {
   query("#displayName").innerText = profile.display_name;
 
   if (profile.images[0]) {
-    const profileImage = new Image(200, 200);
+    const profileImage = new Image();
     profileImage.src = profile.images[0].url;
+    profileImage.alt = "Imagem de perfil";
+    query("#avatar").appendChild(profileImage);
+  } else {
+    const profileImage = new Image();
+    profileImage.src = "src/download.jpg";
+    profileImage.alt = "Imagem de perfil";
     query("#avatar").appendChild(profileImage);
   }
 
@@ -94,5 +100,4 @@ function populateUI(profile: any) {
   query("#uri").setAttribute("href", profile.external_urls.spotify);
   query("#url").innerText = profile.href;
   query("#url").setAttribute("href", profile.href);
-  query("#imgUrl").innerHTML = `<img src="${profile.images[0]?.url ??"()"}" alt="Imagem de perfil">`;
 }
